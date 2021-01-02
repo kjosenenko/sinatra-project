@@ -2,7 +2,9 @@
 
 newest to oldest -->
 <small>Welcome name!</small>
-<a href="listings/new">Add New Listing</a>
+<a href="listings/new"><button>Add New Listing</button></a>
+<a href=""><button>View My Listings</button></a>
+<a href=""><button>View My Bids</button></a>
 <br><br>
 <h1>Listings</h1>
 <hr>
@@ -10,6 +12,6 @@ newest to oldest -->
 <% @listings.each do |listing| %>
     <p>
     <%= listing.title %>
-    <a href="listings/<%= listing.id %>">View</a>
+    <a href="listings/<%= listing.id %>"><button>View</button></a>
     </p>
 <% end %>

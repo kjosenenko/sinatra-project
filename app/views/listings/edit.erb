@@ -3,7 +3,7 @@
 <h1>Update: <%= @listing.title %></h1>
 <br>
 <form method="post" action="/listings/<%= @listing.id %>">
-<input id="hidden" type="hidden" name="_method" value="patch">
+<input type="hidden" name="_method" value="patch">
 <label>Title</label>
 <br>
 <input type="text" name="title" value="<%= @listing.title %>"/>

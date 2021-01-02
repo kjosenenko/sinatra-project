@@ -1,1 +1,16 @@
 <!-- New from Listing -->
+<a href="/listings/<%= @listing.id %>">Back to Listing</a>
+<br><br><br>
+<h1>New Bid for "<%= @listing.title %>"</h1>
+<br>
+<form method="post" action="/bids">
+<input type="hidden" name="listing_id" value="<%= @listing.id %>">
+<label>Amount $</label>
+<input type="integer" name="amount"/>
+<br><br>
+<label>Message to poster:</label>
+<br>
+<textarea type="text" name="message" rows="4" cols="50"></textarea>
+<br><br>
+<input type="submit" value="Post Bid">
+</form>
