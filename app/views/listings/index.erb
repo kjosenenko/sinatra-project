@@ -1,3 +1,15 @@
-Index shown when logged in
+<!-- Index shown when logged in
 
-newest to oldest
+newest to oldest -->
+<small>Welcome name!</small>
+<a href="listings/new">Add New Listing</a>
+<br><br>
+<h1>Listings</h1>
+<hr>
+<br><br>
+<% @listings.each do |listing| %>
+    <p>
+    <%= listing.title %>
+    <a href="listings/<%= listing.id %>">View</a>
+    </p>
+<% end %>

@@ -1,4 +1,13 @@
-Shows description
-Show Username who posted
-User: edit/delete 
-Anyone can click to add New Bid
+<a href="/listings">Back to Listings</a>
+<br><br><br>
+<h2><%= @listing.title %></h2>
+<small>Posted by: </small>
+<br><br><br>
+<p><%= @listing.description %></p>
+<br>
+<a href="/listings/<%= @listing.id %>/edit">Edit</a>
+<form method="post" action="/listings/<%= @listing.id %>">
+<input id="hidden" type="hidden" name="_method" value="delete">
+<br>
+<input type="submit" value="Delete">
+</form>
