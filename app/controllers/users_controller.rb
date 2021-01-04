@@ -5,19 +5,14 @@ class UsersController < ApplicationController
     end
     
     post '/signup' do
-        if User.find_by(username:params[:username])
-            @error = "This username already exists, please try logging in."
-            erb :'users/login'
+        @user = User.new(params)
+        if @user.save 
+            session[:user_id] = @user.id
+            redirect "/listings"
         else
-            @user = User.new(params)
-            if @user.save 
-                session[:user_id] = @user.id
-                redirect "/listings"
-            else
-                @error = @user.errors.full_messages
-                erb :'users/signup'
-            end 
-        end
+            @error = @user.errors.full_messages
+            erb :'users/signup'
+        end 
     end 
 
     get '/login' do

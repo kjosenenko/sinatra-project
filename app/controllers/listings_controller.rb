@@ -32,8 +32,12 @@ class ListingsController < ApplicationController
     #post new listing
     post '/listings' do
         if logged_in?
-            @listing = Listing.create(params)
-            redirect "/listings/#{@listing.id}"
+            if @listing = Listing.create(params)
+                redirect "/listings/#{@listing.id}"
+            else
+                @error = @listing.errors.full_messages
+                erb :'bids'
+            end
         else
             redirect "/login"
         end
