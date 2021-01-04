@@ -1,10 +1,10 @@
-<!-- New from Listing -->
 <a href="/listings/<%= @listing.id %>">Back to Listing</a>
 <br><br><br>
 <h1>New Bid for "<%= @listing.title %>"</h1>
 <br>
 <form method="post" action="/bids">
 <input type="hidden" name="listing_id" value="<%= @listing.id %>">
+<input type="hidden" name="user_id" value="<%= current_user.id %>">
 <label>Amount $</label>
 <input type="integer" name="amount"/>
 <br><br>

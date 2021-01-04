@@ -1,0 +1,9 @@
+<a href="/listings">Back to All Listings</a>
+<br><br>
+<h1><%= current_user.username %>'s Current Bids</h1>
+<br>
+<% @bids.each do |bid| %>
+   <%= bid.listing.title %> - $<%= bid.amount %>
+   <a href="/bids/<%= bid.id %>"><button>View Bid</button></a>
+   <br><br>
+<% end %>

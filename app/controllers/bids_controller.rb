@@ -2,56 +2,87 @@ class BidsController < ApplicationController
 
     #index all bids made by user
     get '/bids' do
-        @bids = Bid.all
-        erb :'bids/index'
+        if logged_in?
+            @bids = Bid.select {|bid| bid.user_id == current_user.id}
+            erb :'bids/index_user'
+        else
+            redirect "/login"
+        end
     end
 
     #index all bids for a listing
     get '/listings/:id/bids' do
-        @listing = Listing.find_by_id(params[:id])
-        @bids = Bid.select {|bid| bid.listing_id == params[:id].to_i}
-        erb :'bids/index'
+        if logged_in?
+            @listing = Listing.find_by_id(params[:id])
+            @bids = Bid.select {|bid| bid.listing_id == params[:id].to_i}
+            erb :'bids/index_listing'
+        else
+            redirect "/login"
+        end
     end
 
     #create new bid form
     get '/bids/new/:id' do
-        @listing = Listing.find_by_id(params[:id])
-        erb :'bids/new'
+        if logged_in?
+            @listing = Listing.find_by_id(params[:id])
+            erb :'bids/new'
+        else
+            redirect "/login"
+        end
     end
 
     #post new bid
     post '/bids' do
-        @bid = Bid.create(params)
-        redirect to "/bids/#{@bid.id}"
+        if logged_in?
+            @bid = Bid.create(params)
+            redirect "/bids/#{@bid.id}"
+        else
+            redirect "/login"
+        end
     end
 
     #show a bid
     get '/bids/:id' do
-        @bid = Bid.find_by_id(params[:id])
-        erb :'bids/show'
+        if logged_in?
+            @bid = Bid.find_by_id(params[:id])
+            erb :'bids/show'
+        else
+            redirect "/login"
+        end
     end
 
     #edit a bid form
     get '/bids/:id/edit' do
-        @bid = Bid.find_by_id(params[:id])
-        erb :'bids/edit'
+        if logged_in?
+            @bid = Bid.find_by_id(params[:id])
+            erb :'bids/edit'
+        else
+            redirect "/login"
+        end
     end
 
     #update bid in db
     patch '/bids/:id' do
-        @bid = Bid.find_by_id(params[:id])
-        @bid.amount = (params[:amount])
-        @bid.message = (params[:message])
-        @bid.save
-        redirect to "/bids/#{@bid.id}"
+        if logged_in?
+            @bid = Bid.find_by_id(params[:id])
+            @bid.amount = (params[:amount])
+            @bid.message = (params[:message])
+            @bid.save
+            redirect "/bids/#{@bid.id}"
+        else
+            redirect "/login"
+        end
     end
 
     #delete a bid
     delete '/bids/:id' do
-        @bid = Bid.find_by_id(params[:id])
-        @bid.delete
-        redirect to "listings"
-        # will redirect to user's bids
+        if logged_in?
+            @bid = Bid.find_by_id(params[:id])
+            @bid.delete
+            redirect "/bids"
+        else
+            redirect "/login"
+        end
     end
 
 end

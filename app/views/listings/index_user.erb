@@ -1,0 +1,11 @@
+<a href="/listings">Back to Listings</a>
+<br><br><br>
+<h1>All Listings for<%= current_user.username %></h1>
+<hr>
+<br><br>
+<% @listings.each do |listing| %>
+    <p>
+    <%= listing.title %>
+    <a href="listings/<%= listing.id %>"><button>View</button></a>
+    </p>
+<% end %>

@@ -1,5 +1,6 @@
 <a href="/listings">Back to Listings</a>
 <br><br><br>
+<% if current_user.id == @listing.user_id %>
 <h1>Update: <%= @listing.title %></h1>
 <br>
 <form method="post" action="/listings/<%= @listing.id %>">
@@ -13,5 +14,5 @@
 <textarea type="text" name="description" rows="4" cols="50"><%= @listing.description %></textarea>
 <br><br>
 <input type="submit" value="Update Listing">
-
 </form>
+<% end %>

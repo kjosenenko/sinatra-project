@@ -1,16 +1,14 @@
-<!--Displays message
-Show Listing name
-Show User Name who made bid
-User: edit/delete -->
-<a href="/listings/<%= @bid.listing.id %>">Back to listing</a>
+<a href="/listings/<%= @bid.listing.id %>/bids">Back to Bids</a>
 <br><br>
 <h1><%= @bid.listing.title %></h1>
 <br>
-<h3>Bid by: </h3>
+<h3>Bid by: <%= @bid.user.username %></h3>
 <h4>Bid Amount $ <%= @bid.amount %></h4>
 <p>Message to poster: <%= @bid.message %></p>
+<% if current_user.id == @bid.user_id %>
 <a href="/bids/<%= @bid.id %>/edit"><button>Edit Bid</button></a>
 <form method="post" action="/bids/<%= @bid.id %>">
 <input id="hidden" type="hidden" name="_method" value="delete">
 <br>
 <input type="submit" value="Delete">
+<% end %>

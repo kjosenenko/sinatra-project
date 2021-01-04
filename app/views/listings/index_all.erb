@@ -1,10 +1,8 @@
-<!-- Index shown when logged in
-
-newest to oldest -->
-<small>Welcome name!</small>
+<small>Welcome <%= current_user.username %> </small> <a href="/logout"> <button>Logout</button></a>
+<br><br>
 <a href="listings/new"><button>Add New Listing</button></a>
-<a href=""><button>View My Listings</button></a>
-<a href=""><button>View My Bids</button></a>
+<a href="my_listings"><button>View My Listings</button></a>
+<a href="bids"><button>View My Bids</button></a>
 <br><br>
 <h1>Listings</h1>
 <hr>

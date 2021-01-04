@@ -3,6 +3,7 @@
 <h1>New Listing</h1>
 <br>
 <form method="post" action="/listings">
+<input type="hidden" name="user_id" value="<%= current_user.id %>">
 <label>Title</label>
 <br>
 <input type="text" name="title"/>
