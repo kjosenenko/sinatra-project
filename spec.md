@@ -9,7 +9,8 @@ Specs:
         User has many bids & listings, Listing has many bids
 - [x] Include at least one belongs_to relationship on another model (e.g. Post belongs_to User)
         Listing belongs to a user, a Bid belongs to a user & a listing
-- [ ] Include user accounts with unique login attribute (username or email)
+- [x] Include user accounts with unique login attribute (username or email)
+        First checks to see if username exists
 - [x] Ensure that the belongs_to resource has routes for Creating, Reading, Updating and Destroying
         New, Index, Edit, Delete
 - [x] Ensure that users can't modify content created by other users
@@ -20,6 +21,6 @@ Specs:
 
 Confirm
 - [ ] You have a large number of small Git commits
-- [ ] Your commit messages are meaningful
-- [ ] You made the changes in a commit that relate to the commit message
-- [ ] You don't include changes in a commit that aren't related to the commit message
+- [x] Your commit messages are meaningful
+- [x] You made the changes in a commit that relate to the commit message
+- [x] You don't include changes in a commit that aren't related to the commit message

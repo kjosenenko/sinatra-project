@@ -2,6 +2,7 @@
 <br><br><br>
 <h1>New Bid for "<%= @listing.title %>"</h1>
 <br>
+<p> <%= @error %> </p>
 <form method="post" action="/bids">
 <input type="hidden" name="listing_id" value="<%= @listing.id %>">
 <input type="hidden" name="user_id" value="<%= current_user.id %>">
