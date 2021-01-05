@@ -12,7 +12,7 @@ Navigate to the new directory then execute:
 ```
 $ bundle install
 ```
-Make sure to to both of the following commands
+Make sure to run both of the following commands
 ```
 $ rake db:migrate
 
