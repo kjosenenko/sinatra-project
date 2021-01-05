@@ -15,12 +15,14 @@ Specs:
         New, Index, Edit, Delete
 - [x] Ensure that users can't modify content created by other users
         check by comparing current_user.id to user_id of listing or bid
-- [ ] Include user input validations
-- [ ] BONUS - not required - Display validation failures to user with error message (example form URL e.g. /posts/new)
+- [x] Include user input validations
+        uses 'validates' on model
+- [x] BONUS - not required - Display validation failures to user with error message (example form URL e.g. /posts/new)
+        displays error messages in views
 - [ ] Your README.md includes a short description, install instructions, a contributors guide and a link to the license for your code
 
 Confirm
-- [ ] You have a large number of small Git commits
+- [x] You have a large number of small Git commits
 - [x] Your commit messages are meaningful
 - [x] You made the changes in a commit that relate to the commit message
 - [x] You don't include changes in a commit that aren't related to the commit message
