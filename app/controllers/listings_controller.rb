@@ -32,12 +32,13 @@ class ListingsController < ApplicationController
     #post new listing
     post '/listings' do
         if logged_in?
-            if @listing = Listing.create(params)
-                redirect "/listings/#{@listing.id}"
-            else
-                @error = @listing.errors.full_messages
-                erb :'bids'
-            end
+            @listing = Listing.new(params)
+                    if @listing.save
+                    redirect "/listings/#{@listing.id}"
+                else
+                    @error = @listing.errors.full_messages
+                    erb :'/listings/new'
+                end
         else
             redirect "/login"
         end
@@ -69,8 +70,12 @@ class ListingsController < ApplicationController
             @listing = Listing.find_by_id(params[:id])
             @listing.title = (params[:title])
             @listing.description = (params[:description])
-            @listing.save
-            redirect "/listings/#{@listing.id}"
+            if @listing.save
+                redirect "/listings/#{@listing.id}"
+            else
+                @error = @listing.errors.full_messages
+                erb :'listings/edit'
+            end
         else
             redirect "/login"
         end

@@ -1,6 +1,11 @@
 <a href="/listings">Back to Listings</a>
 <br><br><br>
 <h1>New Listing</h1>
+<% if @error %>
+   <% @error.each do |e| %>
+      <h3> Error: <%=  e %> </h3>
+   <%end %>
+<%end %>
 <br>
 <form method="post" action="/listings">
 <input type="hidden" name="user_id" value="<%= current_user.id %>">

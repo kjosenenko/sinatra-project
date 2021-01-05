@@ -1,8 +1,12 @@
 <a href="/listings/<%= @listing.id %>">Back to Listing</a>
 <br><br><br>
 <h1>New Bid for "<%= @listing.title %>"</h1>
+<% if @error %>
+   <% @error.each do |e| %>
+      <h3> Error: <%=  e %> </h3>
+   <%end %>
+<%end %>
 <br>
-<p> <%= @error %> </p>
 <form method="post" action="/bids">
 <input type="hidden" name="listing_id" value="<%= @listing.id %>">
 <input type="hidden" name="user_id" value="<%= current_user.id %>">

@@ -1,7 +1,12 @@
-<a href="/listings">Back to Listings</a>
+<a href="/listings/<%= @listing.id %>">Back to Listing</a>
 <br><br><br>
 <% if current_user.id == @listing.user_id %>
 <h1>Update: <%= @listing.title %></h1>
+<% if @error %>
+   <% @error.each do |e| %>
+      <h3> Error: <%=  e %> </h3>
+   <%end %>
+<%end %>
 <br>
 <form method="post" action="/listings/<%= @listing.id %>">
 <input type="hidden" name="_method" value="patch">

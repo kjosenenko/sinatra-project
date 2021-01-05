@@ -4,7 +4,7 @@
 <br>
 <h3>Bid by: <%= @bid.user.username %></h3>
 <h4>Bid Amount $ <%= @bid.amount %></h4>
-<p>Message to poster: <%= @bid.message %></p>
+<p><small>Message to poster: </small><%= @bid.message %></p>
 <% if current_user.id == @bid.user_id %>
 <a href="/bids/<%= @bid.id %>/edit"><button>Edit Bid</button></a>
 <form method="post" action="/bids/<%= @bid.id %>">

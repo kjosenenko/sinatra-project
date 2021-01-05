@@ -34,8 +34,14 @@ class BidsController < ApplicationController
     #post new bid
     post '/bids' do
         if logged_in?
-            @bid = Bid.create(params)
-            redirect "/bids/#{@bid.id}"
+            @bid = Bid.new(params)
+            if @bid.save
+                redirect "/bids/#{@bid.id}"
+            else
+                @listing = Listing.find_by_id(params[:listing_id])
+                @error = @bid.errors.full_messages
+                erb :'bids/new'
+            end
         else
             redirect "/login"
         end
@@ -67,8 +73,12 @@ class BidsController < ApplicationController
             @bid = Bid.find_by_id(params[:id])
             @bid.amount = (params[:amount])
             @bid.message = (params[:message])
-            @bid.save
-            redirect "/bids/#{@bid.id}"
+            if @bid.save
+                redirect "/bids/#{@bid.id}"
+            else
+                @error = @bid.errors.full_messages
+                erb :'bids/edit'
+            end
         else
             redirect "/login"
         end

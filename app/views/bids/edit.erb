@@ -4,6 +4,11 @@
 <br><br><br>
 <% if current_user.id == @bid.user_id %>
 <h1>Update: <%= @bid.listing.title %></h1>
+<% if @error %>
+   <% @error.each do |e| %>
+      <h3> Error: <%=  e %> </h3>
+   <%end %>
+<%end %>
 <br>
 <form method="post" action="/bids/<%= @bid.id %>">
 <input type="hidden" name="_method" value="patch">
