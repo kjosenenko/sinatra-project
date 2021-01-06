@@ -26,6 +26,10 @@ class ApplicationController < Sinatra::Base
 		def current_user
 			User.find(session[:user_id])
 		end
-	end
+  end
+  
+  error 400..510 do
+    erb :oops
+  end
 
 end
