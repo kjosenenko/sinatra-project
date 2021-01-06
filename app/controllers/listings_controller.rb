@@ -47,8 +47,11 @@ class ListingsController < ApplicationController
     #show a listing
     get '/listings/:id' do
         if logged_in?
-            @listing = Listing.find_by_id(params[:id])
-            erb :'listings/show'
+            if @listing = Listing.find_by_id(params[:id])
+                erb :'listings/show'
+            else
+                erb :oops
+            end
         else
             redirect "/login"
         end
@@ -57,8 +60,11 @@ class ListingsController < ApplicationController
     #edit a listing form
     get '/listings/:id/edit' do
         if logged_in?
-            @listing = Listing.find_by_id(params[:id])
-            erb :'listings/edit'
+            if @listing = Listing.find_by_id(params[:id])
+                erb :'listings/edit'
+            else
+                erb :oops
+            end
         else
             redirect "/login"
         end

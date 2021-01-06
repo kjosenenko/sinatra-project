@@ -13,9 +13,12 @@ class BidsController < ApplicationController
     #index all bids for a listing
     get '/listings/:id/bids' do
         if logged_in?
-            @listing = Listing.find_by_id(params[:id])
-            @bids = Bid.select {|bid| bid.listing_id == params[:id].to_i}
-            erb :'bids/index_listing'
+            if @listing = Listing.find_by_id(params[:id])
+                @bids = Bid.select {|bid| bid.listing_id == params[:id].to_i}
+                erb :'bids/index_listing'
+            else
+                erb :oops
+            end
         else
             redirect "/login"
         end
@@ -24,8 +27,11 @@ class BidsController < ApplicationController
     #create new bid form
     get '/bids/new/:id' do
         if logged_in?
-            @listing = Listing.find_by_id(params[:id])
-            erb :'bids/new'
+            if @listing = Listing.find_by_id(params[:id])
+                erb :'bids/new'
+            else
+                erb :oops
+            end
         else
             redirect "/login"
         end
@@ -50,8 +56,11 @@ class BidsController < ApplicationController
     #show a bid
     get '/bids/:id' do
         if logged_in?
-            @bid = Bid.find_by_id(params[:id])
-            erb :'bids/show'
+            if @bid = Bid.find_by_id(params[:id])
+                erb :'bids/show'
+            else
+                erb :oops
+            end
         else
             redirect "/login"
         end
@@ -60,8 +69,11 @@ class BidsController < ApplicationController
     #edit a bid form
     get '/bids/:id/edit' do
         if logged_in?
-            @bid = Bid.find_by_id(params[:id])
-            erb :'bids/edit'
+            if @bid = Bid.find_by_id(params[:id])
+                erb :'bids/edit'
+            else
+                erb :oops
+            end
         else
             redirect "/login"
         end
