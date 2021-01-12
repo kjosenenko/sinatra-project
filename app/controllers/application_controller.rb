@@ -28,7 +28,11 @@ class ApplicationController < Sinatra::Base
 		end
   end
   
-  error 400..510 do
+  error do
+    erb :oops
+  end
+
+  not_found do
     erb :oops
   end
 
