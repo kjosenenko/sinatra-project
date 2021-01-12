@@ -85,7 +85,7 @@ class BidsController < ApplicationController
             @bid = Bid.find_by_id(params[:id])
             @bid.amount = (params[:amount])
             @bid.message = (params[:message])
-            if @bid.save
+            if (session[:user_id] == @bid.user_id) && @bid.save
                 redirect "/bids/#{@bid.id}"
             else
                 @error = @bid.errors.full_messages
@@ -100,8 +100,12 @@ class BidsController < ApplicationController
     delete '/bids/:id' do
         if logged_in?
             @bid = Bid.find_by_id(params[:id])
-            @bid.delete
-            redirect "/bids"
+            if (session[:user_id] == @bid.user_id)
+                @bid.delete
+                redirect "/bids"
+            else
+                redirect "/bids"
+            end
         else
             redirect "/login"
         end

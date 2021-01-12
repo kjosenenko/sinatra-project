@@ -72,11 +72,11 @@ class ListingsController < ApplicationController
 
     #update lisitng in db
     patch '/listings/:id' do
-        if logged_in?
+        if logged_in? 
             @listing = Listing.find_by_id(params[:id])
             @listing.title = (params[:title])
             @listing.description = (params[:description])
-            if @listing.save
+            if (session[:user_id] == @listing.user_id) && @listing.save
                 redirect "/listings/#{@listing.id}"
             else
                 @error = @listing.errors.full_messages
@@ -91,8 +91,12 @@ class ListingsController < ApplicationController
     delete '/listings/:id' do
         if logged_in?
             @listing = Listing.find_by_id(params[:id])
-            @listing.delete
-            redirect "/listings"
+            if session[:user_id] == @listing.user_id
+                @listing.delete
+                redirect "/listings"
+            else
+                redirect "/listings"
+            end
         else
             redirect "/login"
         end
