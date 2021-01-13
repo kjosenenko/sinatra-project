@@ -1,14 +1,16 @@
 <a href="/listings/<%= @bid.listing.id %>">Back to Listing</a>
 <br><br>
-<h1><%= @bid.listing.title %></h1>
-<br>
-<h3>Bid by: <%= @bid.user.username %></h3>
-<h4>Bid Amount $ <%= @bid.amount %></h4>
-<p><small>Message to poster: </small><%= @bid.message %></p>
-<% if current_user.id == @bid.user_id %>
-<a href="/bids/<%= @bid.id %>/edit"><button>Edit Bid</button></a>
-<form method="post" action="/bids/<%= @bid.id %>">
-<input id="hidden" type="hidden" name="_method" value="delete">
-<br>
-<input type="submit" value="Delete">
+<% if (current_user.id == @bid.user_id) || (current_user.id == @bid.listing.user_id) %>
+    <h1><%= @bid.listing.title %></h1>
+    <br>
+    <h3>Bid by: <%= @bid.user.username %></h3>
+    <h4>Bid Amount $ <%= @bid.amount %></h4>
+    <p><small>Message to poster: </small><%= @bid.message %></p>
+    <% if current_user.id == @bid.user_id %>
+    <a href="/bids/<%= @bid.id %>/edit"><button>Edit Bid</button></a>
+    <form method="post" action="/bids/<%= @bid.id %>">
+    <input id="hidden" type="hidden" name="_method" value="delete">
+    <br>
+    <input type="submit" value="Delete">
+    <% end %>
 <% end %>

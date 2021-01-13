@@ -24,7 +24,7 @@ class BidsController < ApplicationController
         end
     end
 
-    #create new bid form
+    #new bid form
     get '/bids/new/:id' do
         if logged_in?
             if @listing = Listing.find_by_id(params[:id])
@@ -37,7 +37,7 @@ class BidsController < ApplicationController
         end
     end
 
-    #post new bid
+    #create new bid
     post '/bids' do
         if logged_in?
             @bid = Bid.new(params)

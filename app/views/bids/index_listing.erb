@@ -1,5 +1,5 @@
+<a href="/listings/<%= @listing.id %>">Back to Listing</a>
 <% if current_user.id == @listing.user_id %>
-   <a href="/listings/<%= @listing.id %>">Back to Listing</a>
    <br><br>
    <h1>Bids for: <%= @listing.title %></h1>
    <br>

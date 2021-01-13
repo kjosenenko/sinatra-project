@@ -20,7 +20,7 @@ class ListingsController < ApplicationController
         end
     end
 
-    #create new listing form
+    #new listing form
     get '/listings/new' do
         if logged_in?
             erb :'listings/new'
@@ -29,7 +29,7 @@ class ListingsController < ApplicationController
         end
     end
 
-    #post new listing
+    #create new listing
     post '/listings' do
         if logged_in?
             @listing = Listing.new(params)

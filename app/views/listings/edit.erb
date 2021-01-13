@@ -1,23 +1,23 @@
 <a href="/listings/<%= @listing.id %>">Back to Listing</a>
 <br><br><br>
 <% if current_user.id == @listing.user_id %>
-<h1>Update: <%= @listing.title %></h1>
-<% if @error %>
-   <% @error.each do |e| %>
-      <h3> Error: <%=  e %> </h3>
+   <h1>Update: <%= @listing.title %></h1>
+   <% if @error %>
+      <% @error.each do |e| %>
+         <h3> Error: <%=  e %> </h3>
+      <%end %>
    <%end %>
-<%end %>
-<br>
-<form method="post" action="/listings/<%= @listing.id %>">
-<input type="hidden" name="_method" value="patch">
-<label>Title</label>
-<br>
-<input type="text" name="title" value="<%= @listing.title %>"/>
-<br><br>
-<label>Description</label>
-<br>
-<textarea type="text" name="description" rows="4" cols="50"><%= @listing.description %></textarea>
-<br><br>
-<input type="submit" value="Update Listing">
-</form>
+   <br>
+   <form method="post" action="/listings/<%= @listing.id %>">
+   <input type="hidden" name="_method" value="patch">
+   <label>Title</label>
+   <br>
+   <input type="text" name="title" value="<%= @listing.title %>"/>
+   <br><br>
+   <label>Description</label>
+   <br>
+   <textarea type="text" name="description" rows="4" cols="50"><%= @listing.description %></textarea>
+   <br><br>
+   <input type="submit" value="Update Listing">
+   </form>
 <% end %>

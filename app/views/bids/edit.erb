@@ -3,22 +3,22 @@
 <a href="/bids/<%= @bid.id %>">Back to Bid</a>
 <br><br><br>
 <% if current_user.id == @bid.user_id %>
-<h1>Update: <%= @bid.listing.title %></h1>
-<% if @error %>
-   <% @error.each do |e| %>
-      <h3> Error: <%=  e %> </h3>
+   <h1>Update: <%= @bid.listing.title %></h1>
+   <% if @error %>
+      <% @error.each do |e| %>
+         <h3> Error: <%=  e %> </h3>
+      <%end %>
    <%end %>
-<%end %>
-<br>
-<form method="post" action="/bids/<%= @bid.id %>">
-<input type="hidden" name="_method" value="patch">
-<label>Amount $</label>
-<input type="integer" name="amount" value="<%= @bid.amount %>"/>
-<br><br>
-<label>Message to poster:</label>
-<br>
-<textarea type="text" name="message" rows="4" cols="50"><%= @bid.message %></textarea>
-<br><br>
-<input type="submit" value="Update Bid">
-</form>
+   <br>
+   <form method="post" action="/bids/<%= @bid.id %>">
+   <input type="hidden" name="_method" value="patch">
+   <label>Amount $</label>
+   <input type="integer" name="amount" value="<%= @bid.amount %>"/>
+   <br><br>
+   <label>Message to poster:</label>
+   <br>
+   <textarea type="text" name="message" rows="4" cols="50"><%= @bid.message %></textarea>
+   <br><br>
+   <input type="submit" value="Update Bid">
+   </form>
 <% end %>
