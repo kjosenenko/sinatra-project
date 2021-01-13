@@ -33,7 +33,7 @@ class ListingsController < ApplicationController
     post '/listings' do
         if logged_in?
             @listing = Listing.new(params)
-                    if @listing.save
+                    if (session[:user_id] == @listing.user_id) && @listing.save
                     redirect "/listings/#{@listing.id}"
                 else
                     @error = @listing.errors.full_messages

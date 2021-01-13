@@ -41,7 +41,7 @@ class BidsController < ApplicationController
     post '/bids' do
         if logged_in?
             @bid = Bid.new(params)
-            if @bid.save
+            if (session[:user_id] == @bid.user_id) && @bid.save
                 redirect "/bids/#{@bid.id}"
             else
                 @listing = Listing.find_by_id(params[:listing_id])
