@@ -1,6 +1,5 @@
 class ListingsController < ApplicationController
 
-    #index all listings
     get '/listings' do
         if logged_in?
             @listings = Listing.all
@@ -10,7 +9,6 @@ class ListingsController < ApplicationController
         end
     end
 
-    #index all listings belonging to current user
     get '/my_listings' do
         if logged_in?
             @listings = Listing.select {|listing| listing.user_id == current_user.id}
@@ -20,7 +18,6 @@ class ListingsController < ApplicationController
         end
     end
 
-    #new listing form
     get '/listings/new' do
         if logged_in?
             erb :'listings/new'
@@ -29,7 +26,6 @@ class ListingsController < ApplicationController
         end
     end
 
-    #create new listing
     post '/listings' do
         if logged_in?
             @listing = Listing.new(params)
@@ -44,7 +40,6 @@ class ListingsController < ApplicationController
         end
     end
 
-    #show a listing
     get '/listings/:id' do
         if logged_in?
             if @listing = Listing.find_by_id(params[:id])
@@ -57,7 +52,6 @@ class ListingsController < ApplicationController
         end
     end
 
-    #edit a listing form
     get '/listings/:id/edit' do
         if logged_in?
             if @listing = Listing.find_by_id(params[:id])
@@ -70,7 +64,6 @@ class ListingsController < ApplicationController
         end
     end
 
-    #update lisitng in db
     patch '/listings/:id' do
         if logged_in? 
             @listing = Listing.find_by_id(params[:id])
@@ -87,7 +80,6 @@ class ListingsController < ApplicationController
         end
     end
 
-    #delete a listing
     delete '/listings/:id' do
         if logged_in?
             @listing = Listing.find_by_id(params[:id])

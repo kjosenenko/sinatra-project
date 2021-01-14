@@ -1,6 +1,5 @@
 class BidsController < ApplicationController
-
-    #index all bids made by user
+    
     get '/bids' do
         if logged_in?
             @bids = Bid.select {|bid| bid.user_id == current_user.id}
@@ -9,8 +8,7 @@ class BidsController < ApplicationController
             redirect "/login"
         end
     end
-
-    #index all bids for a listing
+    
     get '/listings/:id/bids' do
         if logged_in?
             if @listing = Listing.find_by_id(params[:id])
@@ -23,8 +21,7 @@ class BidsController < ApplicationController
             redirect "/login"
         end
     end
-
-    #new bid form
+    
     get '/bids/new/:id' do
         if logged_in?
             if @listing = Listing.find_by_id(params[:id])
@@ -36,8 +33,7 @@ class BidsController < ApplicationController
             redirect "/login"
         end
     end
-
-    #create new bid
+    
     post '/bids' do
         if logged_in?
             @bid = Bid.new(params)
@@ -53,7 +49,6 @@ class BidsController < ApplicationController
         end
     end
 
-    #show a bid
     get '/bids/:id' do
         if logged_in?
             if @bid = Bid.find_by_id(params[:id])
@@ -66,7 +61,6 @@ class BidsController < ApplicationController
         end
     end
 
-    #edit a bid form
     get '/bids/:id/edit' do
         if logged_in?
             if @bid = Bid.find_by_id(params[:id])
@@ -79,7 +73,6 @@ class BidsController < ApplicationController
         end
     end
 
-    #update bid in db
     patch '/bids/:id' do
         if logged_in?
             @bid = Bid.find_by_id(params[:id])
@@ -96,7 +89,6 @@ class BidsController < ApplicationController
         end
     end
 
-    #delete a bid
     delete '/bids/:id' do
         if logged_in?
             @bid = Bid.find_by_id(params[:id])
